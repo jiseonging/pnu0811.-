@@ -1,0 +1,278 @@
+
+import { 
+  BarChart3, 
+  Map, 
+  ChevronRight, 
+  Github, 
+  Mail, 
+  User, 
+  X, 
+  Database, 
+  TrendingUp,
+  Car,
+  Sun,
+  Moon
+} from 'lucide-react';
+
+const App = () => {
+  const [selectedReport, setSelectedReport] = useState(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // 포트폴리오 프로젝트 (보고서) 데이터
+  const reports = [
+    {
+      id: 1,
+      title: "진로 탐색 및 동향 분석 보고서",
+      category: "Career Data Analysis",
+      date: "2026. 05",
+      source: "대학 알리미 데이터",
+      link: ".data1/index.html",
+      icon: <TrendingUp className="w-8 h-8 text-blue-500" />,
+      shortDesc: "대학 알리미 데이터를 활용하여 주요 학과별 취업률 및 진로 동향을 분석한 보고서입니다.",
+      content: (
+        <div className="space-y-4">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed transition-colors">
+            <strong>목적:</strong> 현대 사회의 급변하는 직업 환경 속에서, 대학 진학 및 전공 선택에 실질적인 도움을 주기 위해 전국 주요 대학의 데이터를 분석했습니다.
+          </p>
+          <div className="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg transition-colors">
+            <h4 className="font-semibold text-blue-800 dark:text-blue-300 flex items-center mb-2">
+              <Database className="w-4 h-4 mr-2" /> 활용 데이터
+            </h4>
+            <p className="text-sm text-blue-900 dark:text-blue-200">대학 알리미 (공시데이터) - 졸업생 취업 현황, 전공별 진로 취업률 등</p>
+          </div>
+          <h4 className="font-semibold text-slate-800 dark:text-slate-200 mt-4 border-b dark:border-slate-700 pb-2 transition-colors">주요 분석 결과</h4>
+          <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 space-y-2 text-sm transition-colors">
+            <li>이공계열 및 IT 관련 학과의 취업률 지속적 상승세 확인</li>
+            <li>산학협력 프로그램 참여율과 실제 취업률 간의 유의미한 상관관계 도출</li>
+            <li>지역별 인재 유출 및 정착 비율 분석을 통한 지역 맞춤형 진로 설계 제안</li>
+          </ul>
+          <div className="mt-6 p-4 border border-slate-200 dark:border-slate-700 rounded-lg flex items-center justify-center bg-slate-50 dark:bg-slate-800 h-40 transition-colors">
+            <span className="text-slate-400 dark:text-slate-500 italic">[여기에 데이터 시각화 차트가 들어갑니다]</span>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 2,
+      title: "교통사고 다발구역 분석 및 개선 보고서",
+      category: "Traffic Data Analysis",
+      date: "2026. 07",
+      source: "도로교통공단 데이터",
+      link: "data2/index.html",
+      icon: <Car className="w-8 h-8 text-emerald-500" />,
+      shortDesc: "도로교통공단 데이터를 분석하여 지역별 교통사고 다발 구역의 패턴을 파악하고 개선 방안을 도출했습니다.",
+      content: (
+        <div className="space-y-4">
+          <p className="text-slate-700 dark:text-slate-300 leading-relaxed transition-colors">
+            <strong>목적:</strong> 보행자 및 운전자의 안전을 위협하는 교통사고 다발 구역의 공간적 특성을 파악하고, 데이터 기반의 교통 안전 개선 방안을 제시합니다.
+          </p>
+          <div className="bg-emerald-50 dark:bg-emerald-900/30 p-4 rounded-lg transition-colors">
+            <h4 className="font-semibold text-emerald-800 dark:text-emerald-300 flex items-center mb-2">
+              <Database className="w-4 h-4 mr-2" /> 활용 데이터
+            </h4>
+            <p className="text-sm text-emerald-900 dark:text-emerald-200">도로교통공단 (TAAS) - 교통사고 통계 데이터, 사상자 통계, 사고 유형별 데이터</p>
+          </div>
+          <h4 className="font-semibold text-slate-800 dark:text-slate-200 mt-4 border-b dark:border-slate-700 pb-2 transition-colors">주요 분석 결과</h4>
+          <ul className="list-disc list-inside text-slate-600 dark:text-slate-400 space-y-2 text-sm transition-colors">
+            <li>특정 교차로에서의 우회전 시 보행자 사고 비율이 전체 사고의 25% 차지</li>
+            <li>야간 시간대(22시~02시) 이면도로 내 사고 발생률 급증 패턴 발견</li>
+            <li>시야 확보 불량 및 신호 체계 미흡 지역을 핫스팟(Hotspot) 맵핑으로 시각화</li>
+            <li><strong>개선 제안:</strong> 우회전 전용 신호등 도입 및 스마트 횡단보도 설치 제안</li>
+          </ul>
+          <div className="mt-6 p-4 border border-slate-200 dark:border-slate-700 rounded-lg flex items-center justify-center bg-slate-50 dark:bg-slate-800 h-40 transition-colors">
+            <span className="text-slate-400 dark:text-slate-500 italic">[여기에 공간 데이터(지도) 시각화가 들어갑니다]</span>
+          </div>
+        </div>
+      )
+    }
+  ];
+
+  return (
+    <div className={isDarkMode ? 'dark' : ''}>
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 font-sans text-slate-900 dark:text-slate-100 selection:bg-blue-200 selection:text-blue-900 dark:selection:bg-blue-900 dark:selection:text-blue-100 transition-colors duration-300">
+        
+        {/* Navigation */}
+        <nav className="sticky top-0 z-40 w-full backdrop-blur-lg bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+          <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <span className="font-bold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-emerald-600 dark:from-blue-400 dark:to-emerald-400">
+              Ji-sung.Portfolio
+            </span>
+            <div className="flex items-center space-x-6">
+              <div className="hidden md:flex space-x-8 text-sm font-medium text-slate-600 dark:text-slate-300 mr-2">
+                <a href="#about" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">소개</a>
+                <a href="#projects" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">활동 내역</a>
+                <a href="#contact" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">연락처</a>
+              </div>
+              
+              {/* Theme Toggle Button */}
+              <button 
+                onClick={() => setIsDarkMode(!isDarkMode)}
+                className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                aria-label="Toggle Dark Mode"
+              >
+                {isDarkMode ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5" />}
+              </button>
+            </div>
+          </div>
+        </nav>
+
+        {/* Hero Section */}
+        <section id="about" className="pt-32 pb-20 px-6">
+          <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
+            <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-emerald-100 dark:from-blue-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center mb-8 shadow-inner border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+              <User className="w-10 h-10 text-slate-600 dark:text-slate-300" />
+            </div>
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-slate-900 dark:text-white transition-colors duration-300">
+              데이터로 세상을 읽어내는<br />
+              <span className="text-blue-600 dark:text-blue-400">데이터 분석가 지성</span>입니다.
+            </h1>
+            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mb-10 leading-relaxed transition-colors duration-300">
+              복잡한 데이터 속에서 의미 있는 패턴을 찾아내고, 더 나은 의사결정을 돕는 인사이트를 도출하는 것을 좋아합니다. 저의 주요 활동과 보고서를 소개합니다.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#projects" className="px-8 py-3 bg-slate-900 dark:bg-blue-600 text-white rounded-full font-medium hover:bg-slate-800 dark:hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                포트폴리오 보기
+              </a>
+              <a href="#contact" className="px-8 py-3 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm hover:shadow-md">
+                연락하기
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Projects / Reports Section */}
+        <section id="projects" className="py-24 px-6 bg-white dark:bg-slate-900/50 transition-colors duration-300">
+          <div className="max-w-6xl mx-auto">
+            <div className="mb-16">
+              <h2 className="text-3xl font-bold mb-4 text-slate-900 dark:text-white transition-colors">주요 활동 및 보고서</h2>
+              <p className="text-slate-600 dark:text-slate-400 transition-colors">공공 데이터를 활용하여 분석하고 작성한 주요 프로젝트입니다.</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {reports.map((report) => (
+                <div 
+                  key={report.id}
+                  onClick={() => setSelectedReport(report)}
+                  className="group relative bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-8 cursor-pointer hover:border-blue-200 dark:hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-900/5 dark:hover:shadow-blue-900/20 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+                >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-50 to-emerald-50 dark:from-blue-900/20 dark:to-emerald-900/20 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="mb-6 bg-white dark:bg-slate-700 w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm border border-slate-100 dark:border-slate-600 transition-colors duration-300">
+                      {report.icon}
+                    </div>
+                    
+                    <div className="flex items-center space-x-3 mb-3">
+                      <span className="text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-full transition-colors">
+                        {report.category}
+                      </span>
+                      <span className="text-xs text-slate-500 dark:text-slate-400 font-medium transition-colors">
+                        {report.date}
+                      </span>
+                    </div>
+                    
+                    <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {report.title}
+                    </h3>
+                    
+                    <p className="text-slate-600 dark:text-slate-400 mb-6 line-clamp-2 transition-colors">
+                      {report.shortDesc}
+                    </p>
+
+                    <div className="flex items-center justify-between border-t border-slate-100 dark:border-slate-700 pt-6 transition-colors duration-300">
+                      <div className="flex items-center text-sm font-medium text-slate-500 dark:text-slate-400">
+                        <Database className="w-4 h-4 mr-2 opacity-70" />
+                        {report.source}
+                      </div>
+                      <a 
+                        href={report.link}
+                        onClick={(e) => e.stopPropagation()}
+                        className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-700 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors text-slate-400 dark:text-slate-300"
+                        title="자세히 보기 페이지로 이동"
+                      >
+                        <ChevronRight className="w-4 h-4" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="py-24 px-6 bg-slate-900 dark:bg-slate-950 text-white transition-colors duration-300">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-6">함께 성장할 기회를 찾고 있습니다</h2>
+            <p className="text-slate-400 dark:text-slate-500 mb-10 max-w-2xl mx-auto transition-colors">
+              데이터 분석, 시각화, 혹은 흥미로운 프로젝트에 대해 이야기 나누고 싶으시다면 언제든지 연락주세요.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+              <a href="mailto:email@example.com" className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors bg-slate-800 dark:bg-slate-900 border border-transparent dark:border-slate-800 px-6 py-3 rounded-xl w-full sm:w-auto justify-center">
+                <Mail className="w-5 h-5" />
+                <span>jisung@example.com</span>
+              </a>
+              <a href="https://github.com" target="_blank" rel="noreferrer" className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors bg-slate-800 dark:bg-slate-900 border border-transparent dark:border-slate-800 px-6 py-3 rounded-xl w-full sm:w-auto justify-center">
+                <Github className="w-5 h-5" />
+                <span>GitHub Profile</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="bg-slate-950 dark:bg-black py-8 text-center text-slate-500 dark:text-slate-600 text-sm transition-colors duration-300">
+          <p>© 2026 Ji-sung. All rights reserved.</p>
+        </footer>
+
+        {/* Report Modal */}
+        {selectedReport && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+            <div 
+              className="absolute inset-0 bg-slate-900/60 dark:bg-slate-950/80 backdrop-blur-sm transition-opacity"
+              onClick={() => setSelectedReport(null)}
+            ></div>
+            <div className="relative bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-3xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+              
+              {/* Modal Header */}
+              <div className="sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-b border-slate-100 dark:border-slate-700 p-6 flex justify-between items-center rounded-t-3xl z-10 transition-colors duration-300">
+                <div>
+                  <span className="text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-full mb-2 inline-block transition-colors">
+                    {selectedReport.category}
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white transition-colors">
+                    {selectedReport.title}
+                  </h3>
+                </div>
+                <button 
+                  onClick={() => setSelectedReport(null)}
+                  className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white transition-colors ml-4 shrink-0"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Modal Content */}
+              <div className="p-6 sm:p-8 text-slate-900 dark:text-slate-200">
+                {selectedReport.content}
+              </div>
+
+              {/* Modal Footer */}
+              <div className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-b-3xl border-t border-slate-100 dark:border-slate-700 flex justify-end transition-colors duration-300">
+                <button 
+                  onClick={() => setSelectedReport(null)}
+                  className="px-6 py-2 bg-slate-900 dark:bg-blue-600 text-white rounded-xl font-medium hover:bg-slate-800 dark:hover:bg-blue-700 transition-colors"
+                >
+                  닫기
+                </button>
+              </div>
+
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default App;
